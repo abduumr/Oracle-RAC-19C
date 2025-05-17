@@ -527,6 +527,10 @@ unzip p33803476_190000_Linux-x86-64.zip -d /u01
 ```
 
 ```
+timedatectl
+```
+
+```
 source /home/grid/.grid_env
 export ORACLE_BASE=/tmp
 asmcmd afd_label CRS /dev/sdc1 --init
