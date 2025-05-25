@@ -109,7 +109,10 @@ systemctl restart chronyd
 chronyc sources
 systemctl status chronyd
 
+```
 
+```
+timedatectl
 ```
 
 ```
