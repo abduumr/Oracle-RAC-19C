@@ -26,6 +26,8 @@ cat /etc/hosts
                     
 ```
 
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/1.png?raw=true)
+
 ```
 lsblk
 ```
