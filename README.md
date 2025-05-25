@@ -173,10 +173,6 @@ EOF
 
 ```
 echo '. ~/.grid_env' >> /home/grid/.bash_profile
-
-```
-
-```
 source .bash_profile
 env | grep ORACLE
 exit
