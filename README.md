@@ -510,6 +510,10 @@ nslookup rac1
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/35.png?raw=true)
 
 ```
+lsblk
+```
+
+```
 fdisk /dev/sdc
 ```
 
