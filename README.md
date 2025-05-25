@@ -518,6 +518,10 @@ fdisk /dev/sdc
 ```
 
 ```
+lsblk
+```
+
+```
 blkid /dev/sdc1
 blkid /dev/sdc2
 blkid /dev/sdc3
@@ -527,11 +531,11 @@ blkid /dev/sdc3
 ```
 vim /etc/udev/rules.d/99-asm-disks.rules
 
-KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_UUID}=="a6479004-01", SYMLINK+="oracleasm/CRS", OWNER="grid", GROUP="asmadmin", MODE="0660"
+KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_UUID}=="5035b73d-01", SYMLINK+="oracleasm/CRS", OWNER="grid", GROUP="asmadmin", MODE="0660"
 
-KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_UUID}=="a6479004-02", SYMLINK+="oracleasm/DATA", OWNER="grid", GROUP="asmadmin", MODE="0660"
+KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_UUID}=="5035b73d-02", SYMLINK+="oracleasm/DATA", OWNER="grid", GROUP="asmadmin", MODE="0660"
 
-KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_UUID}=="a6479004-03", SYMLINK+="oracleasm/FRA", OWNER="grid", GROUP="asmadmin", MODE="0660"
+KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_UUID}=="5035b73d-03", SYMLINK+="oracleasm/FRA", OWNER="grid", GROUP="asmadmin", MODE="0660"
 
 ```
 
