@@ -31,10 +31,12 @@ cat /etc/hosts
 ```
 lsblk
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/2.png?raw=true)
 
 ```
 fdisk /dev/sdb
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/3.png?raw=true)
 
 ```
 pvcreate /dev/sdb1
@@ -45,20 +47,24 @@ mkdir /u01
 mount /dev/database_vg/database_lv /u01
 lsblk
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/4.png?raw=true)
 
 ```
 vi /etc/fstab
 /dev/mapper/oravg-u01   /u01   ext4  defaults   0 0
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/5.png?raw=true)
 
 ```
 dnf makecache
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/6.png?raw=true)
 
 ```
 dnf install oracle-database-preinstall-19c -y
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/7.png?raw=true)
 
 ```
 groupadd -g 54327 asmdba
@@ -66,6 +72,7 @@ groupadd -g 54328 asmoper
 groupadd -g 54329 asmadmin
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/8.png?raw=true)
 
 ```
 id oracle | grep asm
@@ -73,18 +80,21 @@ usermod -a -G asmdba oracle
 id oracle | grep asm
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/9.png?raw=true)
 
 ```
 useradd -u 54331 -g oinstall -G dba,asmdba,asmadmin,asmoper,racdba grid
 id grid
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/10.png?raw=true)
 
 ```
 echo password | passwd oracle --stdin 
 echo password | passwd grid --stdin
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/11.png?raw=true)
 
 ```
 mkdir -p /u01/19c/oracle/ora_base/db_home
@@ -95,6 +105,7 @@ chown -R grid:oinstall /u01/19c/grid/
 chmod -R 775 /u01
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/12.png?raw=true)
 
 ```
 vim /etc/chrony.conf
@@ -105,6 +116,7 @@ server 2.jp.pool.ntp.org iburst
 server 3.jp.pool.ntp.org iburst
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/13.png?raw=true)
 
 ```
 systemctl restart chronyd
@@ -112,16 +124,19 @@ chronyc sources
 systemctl status chronyd
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/14.png?raw=true)
 
 ```
 timedatectl
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/15.png?raw=true)
 
 ```
 sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
 cat /etc/selinux/config
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/16.png?raw=true)
 
 ```
 setenforce Permissive
@@ -132,18 +147,21 @@ vim /etc/security/limits.d/grid-database-preinstall-19c.conf
 
 :%s/oracle/grid/g
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/17.png?raw=true)
 
 ```
 systemctl stop firewalld
 systemctl disable firewalld
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/18.png?raw=true)
 
 ```
 su - grid
 cp .bash_profile .bash_profile.bkp
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/19.png?raw=true)
 
 ```
 cat > /home/grid/.grid_env <<EOF
@@ -172,6 +190,7 @@ umask 022
 EOF
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/20.png?raw=true)
 
 ```
 echo '. ~/.grid_env' >> /home/grid/.bash_profile
@@ -179,12 +198,14 @@ source .bash_profile
 env | grep ORACLE
 exit
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/21.png?raw=true)
 
 ```
 su - oracle
 cp .bash_profile .bash_profile.bkp
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/22.png?raw=true)
 
 ```
 cat > /home/oracle/.db19_env <<EOF
@@ -224,6 +245,7 @@ TMPDIR=\$tmp ; export TMPDIR
 EOF
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/23.png?raw=true)
 
 ```
 cat  >> /home/oracle/.bash_profile <<EOF
@@ -232,6 +254,7 @@ alias db19_env='. ~/.db19_env'
 EOF
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/24.png?raw=true)
 
 ```
 source /home/oracle/.bash_profile
@@ -239,6 +262,7 @@ env | grep ORACLE_
 exit
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/25.png?raw=true)
 
 ```
 systemctl stop tuned.service ktune.service
@@ -300,6 +324,7 @@ systemctl status avahi-daemon.socket
 dnf install bind bind-utils -y
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/26.png?raw=true)
 
 ```
 systemctl stop named
@@ -307,6 +332,7 @@ systemctl disable named
 cp /etc/named.conf /etc/named.conf.bkp
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/27.png?raw=true)
 
 ```
 vim dns.sh
@@ -424,12 +450,14 @@ EOF
 
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/28.png?raw=true)
 
 ```
 chmod +x dns.sh
 ls -l
 ./dns.sh
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/29.png?raw=true)
 
 ```
 ls -al /var/named/
@@ -440,6 +468,7 @@ chown named:named /var/named/backward.localdomain
 ls -al /var/named/
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/30.png?raw=true)
 
 ```
 # check the configurations 
@@ -453,14 +482,17 @@ systemctl status named
 
 ```
 
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/31.png?raw=true)
 
 ```
 sudo dnf install -y xorg-x11-server-utils
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/32.png?raw=true)
 
 ```
 nslookup rac1
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/33.png?raw=true)
 
 ```
 cat > /etc/resolv.conf <<EOF
@@ -469,11 +501,13 @@ nameserver 192.168.50.67
 EOF
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/34.png?raw=true)
 
 
 ```
 nslookup rac1
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/35.png?raw=true)
 
 ```
 fdisk /dev/sdc
