@@ -597,6 +597,7 @@ EOF
 
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/28-2.png?raw=true)
 
 
 ##### ALL NODE
@@ -620,7 +621,7 @@ ls -al /var/named/
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/30.png?raw=true)
 
-##### ALL NODE
+##### NODE-1
 ```
 # check the configurations 
 named-checkconf
@@ -646,6 +647,7 @@ systemctl enable named
 systemctl status named
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/31-2.png?raw=true)
 
 ##### ALL NODE
 ```
@@ -663,6 +665,7 @@ nslookup rac1
 ```
 nslookup rac2
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/33-2.png?raw=true)
 
 ##### NODE-1
 ```
@@ -682,6 +685,7 @@ nameserver 192.168.50.68
 EOF
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/34-2.png?raw=true)
 
 ##### NODE-1
 ```
@@ -834,6 +838,9 @@ export CV_ASSUME_DISTID=OEL7.9
 
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/66.png?raw=true)
 
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/67.png?raw=true)
+
+## AddNode
 
 ##### NODE-1
 ```
@@ -841,6 +848,8 @@ ssh-keygen -t rsa
 ssh-copy-id grid@rac2.localdomain
 ssh-copy-id grid@rac2
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/68.png?raw=true)
+
 
 ##### NODE-2
 ```
@@ -848,6 +857,7 @@ ssh-keygen -t rsa
 ssh-copy-id grid@rac1.localdomain
 ssh-copy-id grid@rac1
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/69.png?raw=true)
 
 ##### NODE-1
 ```
@@ -862,10 +872,31 @@ ssh grid@rac1
 
 ```
 ##### NODE-1
+
+```
+./sshUserSetup.sh -user oracle -hosts "rac1 rac2" -noPromptPassphrase -confirm -advanced
+```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/70.png?raw=true)
+
+##### NODE-1
 ```
 cd addnode
 ./addnode.sh
 ```
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/70.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/71.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/72.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/73.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/74.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/75.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/76.png?raw=true)
 
 ```
 isi
