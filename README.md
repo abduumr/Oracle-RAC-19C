@@ -693,21 +693,25 @@ nslookup rac1
 ```
 nslookup rac2
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/36.png?raw=true)
 
 ##### ALL NODE
 ```
 lsblk
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/37.png?raw=true)
 
 ##### NODE=1
 ```
 fdisk /dev/sdc
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/38.png?raw=true)
 
 ##### ALL NODE
 ```
 lsblk
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/39.png?raw=true)
 
 ##### ALL NODE
 ```
@@ -716,6 +720,7 @@ blkid /dev/sdc2
 blkid /dev/sdc3
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/40.png?raw=true)
 
 ##### ALL NODE
 ```
@@ -728,6 +733,7 @@ KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_
 KERNEL=="sd*", SUBSYSTEM=="block", ENV{DEVTYPE}=="partition", ENV{ID_PART_ENTRY_UUID}=="5035b73d-03", SYMLINK+="oracleasm/FRA", OWNER="grid", GROUP="asmadmin", MODE="0660"
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/41.png?raw=true)
 
 ##### ALL NODE
 ```
@@ -738,11 +744,13 @@ partx -u /dev/sdc3
 udevadm control --reload-rules && udevadm trigger --action=add
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/42.png?raw=true)
 
 ##### NODE-1
 ```
 unzip LINUX.X64_193000_grid_home.zip -d $ORACLE_HOME
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/43.png?raw=true)
 
 ##### NODE-1
 ```
@@ -751,11 +759,14 @@ mv $ORACLE_HOME/OPatch/ $ORACLE_HOME/Opatch_BKP
 unzip /u01/p6880880_210000_Linux-x86-64.zip -d $ORACLE_HOME
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/44.png?raw=true)
+
 ##### NODE-1
 
 ```
  $ORACLE_HOME/OPatch/opatch version
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/45.png?raw=true)
 
 ##### NODE-1
 ```
@@ -763,11 +774,8 @@ cd /u01
 unzip p33803476_190000_Linux-x86-64.zip -d /u01
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/46.png?raw=true)
 
-##### ALL NODE
-```
-timedatectl
-```
 
 ##### NODE-1
 ```
@@ -777,6 +785,7 @@ asmcmd afd_label CRS /dev/sdc1 --init
 asmcmd afd_lslbl /dev/sdc1
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/47.png?raw=true)
 
 ##### NODE-1
 ```
@@ -786,6 +795,46 @@ export CV_ASSUME_DISTID=OEL7.9
 ./gridSetup.sh -applyPSU /u01/33803476/
 
 ```
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/48.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/49.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/50.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/51.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/52.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/53.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/54.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/55.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/56.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/57.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/58.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/59.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/60.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/61.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/62.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/63.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/64.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/65.png?raw=true)
+
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/66.png?raw=true)
+
+
 ##### NODE-1
 ```
 ssh-keygen -t rsa
