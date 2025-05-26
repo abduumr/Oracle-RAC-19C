@@ -548,7 +548,7 @@ nslookup rac1
 lsblk
 ```
 
-##### ALL NODE
+##### NODE=1
 ```
 fdisk /dev/sdc
 ```
