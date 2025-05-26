@@ -217,6 +217,7 @@ echo '. ~/.grid_env' >> /home/grid/.bash_profile
 source .bash_profile
 env | grep ORACLE
 exit
+
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/21.png?raw=true)
 
@@ -360,7 +361,7 @@ cp /etc/named.conf /etc/named.conf.bkp
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/27.png?raw=true)
 
-##### ALL NODE
+##### NODE-1
 ```
 vim dns.sh
 
@@ -479,11 +480,131 @@ EOF
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/28.png?raw=true)
 
+##### NODE-2
+```
+vim dns.sh
+
+export DNS_IP="192.168.50.68"
+export DNS_DOMAIN="localdomain"
+export DNS_NETWORK="192.168.50.0/24"
+export DNS_BACKWARD="50.168.192.in-addr.arpa"
+export DNS_FORWARD=$DNS_DOMAIN
+export DNS_BACKWARD_FILE="backward.$DNS_DOMAIN"
+export DNS_FORWARD_FILE="forward.$DNS_DOMAIN"
+export DNS_HOSTNAME="rac2"
+export DNS_FQDN=$DNS_HOSTNAME.$DNS_DOMAIN
+
+cat > /etc/named.conf <<EOF
+options {
+        listen-on port 53 { 127.0.0.1; $DNS_IP; };
+        listen-on-v6 port 53 { ::1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        secroots-file   "/var/named/data/named.secroots";
+        recursing-file  "/var/named/data/named.recursing";
+        allow-query     { localhost; $DNS_NETWORK; };
+
+        recursion yes;
+
+        dnssec-enable yes;
+        dnssec-validation yes;
+
+        managed-keys-directory "/var/named/dynamic";
+
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+
+        include "/etc/crypto-policies/back-ends/bind.config";
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+        type hint;
+        file "named.ca";
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+
+// forward zone
+zone "$DNS_DOMAIN" IN {
+        type master;
+        file "$DNS_FORWARD_FILE";
+        allow-update { none; };
+        allow-query { any; };
+};
+
+// reverse zone
+zone "$DNS_BACKWARD" IN {
+        type master;
+        file "$DNS_BACKWARD_FILE";
+        allow-update { none; };
+        allow-query { any; };
+};
+EOF
+
+# Buat file zona forward
+cat > /var/named/$DNS_FORWARD_FILE <<EOF
+\$TTL 86400
+@   IN  SOA $DNS_FQDN. root.$DNS_DOMAIN. (
+        2025051401 ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        604800     ; Expire
+        86400 )    ; Minimum TTL
+
+    IN  NS  $DNS_FQDN.
+
+rac1          IN A 192.168.50.67
+rac2          IN A 192.168.50.68
+rac1-priv     IN A 192.168.51.111
+rac2-priv     IN A 192.168.51.112
+rac1-vip      IN A 192.168.50.31
+rac2-vip      IN A 192.168.50.32
+rac-scan      IN A 192.168.50.41
+rac-scan      IN A 192.168.50.42
+rac-scan      IN A 192.168.50.43
+EOF
+
+# Buat file zona reverse
+cat > /var/named/$DNS_BACKWARD_FILE <<EOF
+\$TTL 86400
+@   IN  SOA $DNS_FQDN. root.$DNS_DOMAIN. (
+        2025051401 ; Serial
+        3600       ; Refresh
+        1800       ; Retry
+        604800     ; Expire
+        86400 )    ; Minimum TTL
+
+    IN  NS  $DNS_FQDN.
+
+67    IN PTR rac1.$DNS_DOMAIN.
+68    IN PTR rac2.$DNS_DOMAIN.
+31    IN PTR rac1-vip.$DNS_DOMAIN.
+32    IN PTR rac2-vip.$DNS_DOMAIN.
+41    IN PTR rac-scan.$DNS_DOMAIN.
+42    IN PTR rac-scan.$DNS_DOMAIN.
+43    IN PTR rac-scan.$DNS_DOMAIN.
+EOF
+
+
+```
+
+
 ##### ALL NODE
 ```
 chmod +x dns.sh
 ls -l
 ./dns.sh
+
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/29.png?raw=true)
 
@@ -514,19 +635,36 @@ systemctl status named
 
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/31.png?raw=true)
 
+##### NODE-2
+```
+# check the configurations 
+named-checkconf
+named-checkzone localdomain /var/named/forward.localdomain
+named-checkzone 192.168.50.68 /var/named/backward.localdomain
+systemctl start named
+systemctl enable named 
+systemctl status named
+
+```
+
 ##### ALL NODE
 ```
 sudo dnf install -y xorg-x11-server-utils
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/32.png?raw=true)
 
-##### ALL NODE
+##### NODE-1
 ```
 nslookup rac1
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/33.png?raw=true)
 
-##### ALL NODE
+##### NODE-2
+```
+nslookup rac2
+```
+
+##### NODE-1
 ```
 cat > /etc/resolv.conf <<EOF
 search localdomain
@@ -536,12 +674,25 @@ EOF
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/34.png?raw=true)
 
+##### NODE-2
+```
+cat > /etc/resolv.conf <<EOF
+search localdomain
+nameserver 192.168.50.68
+EOF
 
-##### ALL NODE
+```
+
+##### NODE-1
 ```
 nslookup rac1
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/35.png?raw=true)
+
+##### NODE-2
+```
+nslookup rac2
+```
 
 ##### ALL NODE
 ```
@@ -588,25 +739,25 @@ udevadm control --reload-rules && udevadm trigger --action=add
 
 ```
 
-##### ALL NODE
+##### NODE-1
 ```
 unzip LINUX.X64_193000_grid_home.zip -d $ORACLE_HOME
 ```
 
-##### ALL NODE
+##### NODE-1
 ```
 cd $ORACLE_HOME
 mv $ORACLE_HOME/OPatch/ $ORACLE_HOME/Opatch_BKP
 unzip /u01/p6880880_210000_Linux-x86-64.zip -d $ORACLE_HOME
 
 ```
-##### ALL NODE
+##### NODE-1
 
 ```
  $ORACLE_HOME/OPatch/opatch version
 ```
 
-##### ALL NODE
+##### NODE-1
 ```
 cd /u01
 unzip p33803476_190000_Linux-x86-64.zip -d /u01
@@ -618,7 +769,7 @@ unzip p33803476_190000_Linux-x86-64.zip -d /u01
 timedatectl
 ```
 
-##### ALL NODE
+##### NODE-1
 ```
 source /home/grid/.grid_env
 export ORACLE_BASE=/tmp
@@ -627,7 +778,7 @@ asmcmd afd_lslbl /dev/sdc1
 
 ```
 
-##### ALL NODE
+##### NODE-1
 ```
 export DISPLAY=192.168.242.59:0.0
 xhost +
@@ -635,9 +786,36 @@ export CV_ASSUME_DISTID=OEL7.9
 ./gridSetup.sh -applyPSU /u01/33803476/
 
 ```
+##### NODE-1
+```
+ssh-keygen -t rsa
+ssh-copy-id grid@rac2.localdomain
+ssh-copy-id grid@rac2
+```
+
+##### NODE-2
+```
+ssh-keygen -t rsa
+ssh-copy-id grid@rac1.localdomain
+ssh-copy-id grid@rac1
+```
+
+##### NODE-1
+```
+ssh  grid@rac2.localdomain
+ssh  grid@rac2
 
 ```
-isi
+##### NODE-2
+```
+ssh grid@rac1.localdomain
+ssh grid@rac1
+
+```
+##### NODE-1
+```
+cd addnode
+./addnode.sh
 ```
 
 ```
