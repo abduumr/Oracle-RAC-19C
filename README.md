@@ -982,8 +982,13 @@ asmca
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/94.png?raw=true)
 
+
+### DBCA
 ```
-isi
+export DISPLAY=192.168.242.82:0.0
+xhost +
+export CV_ASSUME_DISTID=OEL7.9
+DBCA
 ```
 
 ```
