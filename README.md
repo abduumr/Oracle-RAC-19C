@@ -981,6 +981,13 @@ export CV_ASSUME_DISTID=OEL7.9
 asmca
 ```
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/94.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/95.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/96.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/97.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/98.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/99.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/100.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/101.png?raw=true)
 
 
 ### DBCA
@@ -990,304 +997,22 @@ xhost +
 export CV_ASSUME_DISTID=OEL7.9
 DBCA
 ```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
-```
-isi
-```
-
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/102.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/103.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/104.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/105.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/106.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/107.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/108.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/109.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/110.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/111.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/112.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/113.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/114.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/115.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/116.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/117.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/118.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/119.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/120.png?raw=true)
