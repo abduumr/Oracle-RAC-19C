@@ -939,7 +939,6 @@ export CV_ASSUME_DISTID=OEL7.9
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/86.png?raw=true)
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/87.png?raw=true)
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/88.png?raw=true)
-![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/89.png?raw=true)
 
 
 ### RAC1 & RAC2
@@ -947,7 +946,10 @@ export CV_ASSUME_DISTID=OEL7.9
 /u01/19c/oracle/ora_base/db_home/root.sh
 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/89.png?raw=true)
+
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/90.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/91.png?raw=true)
 
 ### Create Data,FRA (RAC1 1)
 
@@ -959,15 +961,26 @@ asmcmd -V
 asmcmd afd_lslbl /dev/sdc1
 
 ls -l /dev/oracleafd/disks/
-```
 
 ```
-isi
-```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/92.png?raw=true)
 
 ```
-isi
+asmcmd afd_lslbl
+asmcmd afd_label FRA /dev/sdc2 --init
+asmcmd afd_label DATA /dev/sdc3 --init
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/93.png?raw=true)
+
+### asmca (RAC 1)
+
+```
+export DISPLAY=192.168.242.82:0.0
+xhost +
+export CV_ASSUME_DISTID=OEL7.9
+asmca
+```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/94.png?raw=true)
 
 ```
 isi
