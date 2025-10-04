@@ -845,6 +845,8 @@ export CV_ASSUME_DISTID=OEL7.9
 ##### NODE-1
 ```
 ssh-keygen -t rsa
+```
+```
 ssh-copy-id grid@rac2.localdomain
 ssh-copy-id grid@rac2
 ```
@@ -854,6 +856,8 @@ ssh-copy-id grid@rac2
 ##### NODE-2
 ```
 ssh-keygen -t rsa
+```
+```
 ssh-copy-id grid@rac1.localdomain
 ssh-copy-id grid@rac1
 ```
