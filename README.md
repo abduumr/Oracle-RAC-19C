@@ -1016,3 +1016,4 @@ DBCA
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/118.png?raw=true)
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/119.png?raw=true)
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/120.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/121.png?raw=true)
