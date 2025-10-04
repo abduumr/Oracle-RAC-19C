@@ -902,24 +902,63 @@ cd addnode
 
 ![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/76.png?raw=true)
 
-```
-isi
-```
+
+### Check Cluster Status
 
 ```
-isi
+crsctl stat res -t 
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/77.png?raw=true)
+
+### Database Installation (RAC 1)
 
 ```
-isi
+unzip LINUX.X64_193000_db_home.zip -d $ORACLE_HOME
+cd $ORACLE_HOME
+$ORACLE_HOME/OPatch/opatch version
+mv OPatch/ OPatch_bkp
+unzip /u01/p6880880_210000_Linux-x86-64.zip -d $ORACLE_HOME
+$ORACLE_HOME/OPatch/opatch version
 ```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/78.png?raw=true)
 
 ```
-isi
-```
+export DISPLAY=192.168.242.82:0.0
+xhost +
+export CV_ASSUME_DISTID=OEL7.9
+[oracle@rac1 db_home]$ ./runInstaller -applyPSU /u01/19c/grid/patches/33803476/
 
 ```
-isi
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/79.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/80.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/81.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/82.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/83.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/84.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/85.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/86.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/87.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/88.png?raw=true)
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/89.png?raw=true)
+
+
+### RAC1 & RAC2
+```
+/u01/19c/oracle/ora_base/db_home/root.sh
+
+```
+![image alt](https://github.com/abduumr/Oracle-RAC-19C/blob/main/rac-19/90.png?raw=true)
+
+### Create Data,FRA (RAC1 1)
+
+```
+source /home/grid/.grid_env
+export ORACLE_BASE=/tmp
+lsblk
+asmcmd -V
+asmcmd afd_lslbl /dev/sdc1
+
+ls -l /dev/oracleafd/disks/
 ```
 
 ```
